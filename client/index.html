@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+	<title> Demo App</title>
+</head>
+<body>
+	<h1>Server Started</h1>
+	<h1>Sample</h1>
+	<ul id="lstgeneral">
+	</ul>
+	<script type="text/javascript">
+
+		function print(text){
+			var ulEle = document.getElementById('lstgeneral');
+			var liEle = document.createElement('li');
+			liEle.innerText = text;
+			ulEle.appendChild(liEle);
+		}
+		var msg = 'How are you?'
+
+		var desObj = { a:1,b:2,c:3};
+		var desArray = [3,4,5];
+
+
+		var test = function test(one = 23, two = 'Mahipat') {
+			console.log(`You have the right to be you.
+    You can only be you when you do your best.`);
+			console.log(`Hello, ${two}.`);
+			var {a,b}=desObj;
+			console.log(a,b)
+			var [c,d] = desArray;
+			console.log(c,d);
+		}
+
+		test();
+
+
+		class UpperCase {
+			constructor (string){
+				this.string = string;
+			}
+
+			get Upper() {
+				return this.toUpperCase();
+			}
+
+			toUpperCase(){
+				return this.string.toUpperCase();
+			}
+
+			static 	st(){
+				return 'I am static';
+			}
+
+			* gen(){
+				var a= 20;
+				while(true)
+					yield a++*2;
+
+			}
+
+
+			async waitM(){
+				var a = new Promise(resolve => {
+					setTimeout((x=20) => resolve(x),1000);
+				})
+				return await a;
+			}
+		}
+
+		var u = new UpperCase('mahipat');
+		//print(u.Upper());
+		print(u.toUpperCase());
+		print(u.Upper);
+		var n = u.gen();
+		print(n.next().value);
+		print(n.next().value);
+		print(n.next().value);
+		print(n.next().value);
+		print(n.next().value);
+		print(n.next().value);
+		print(n.send);
+		print(n.next().value);
+		print(n.next().value);
+		u.waitM().then(x => print('async value ' + x));
+
+		print(n.next().value);
+		print(n.next().value);
+		print(UpperCase.st())
+
+		var ids = ['5632953c4e345e145fdf2df8','563295464e345e145fdf2df9']
+		var messages = ids.map((value, index, list) => `ID of ${index} element is ${value} `)
+		console.log(messages);
+
+		var ids = ['5632953c4e345e145fdf2df8','563295464e345e145fdf2df9']
+		var messages = ids.map(value => `ID is ${value}`)
+		console.log(messages);
+
+
+		var ids = ['Hello','Mahipat']
+		var messages = ids.map((value) =>  { return `ID is ${value}` })
+		console.log(messages);
+
+		var logUpperCase = function() {
+		  this.string = this.string.toUpperCase()
+		  return () => console.log(this.string)
+		}
+
+		logUpperCase.call({ string: 'es6 rocks' })()
+
+	</script>
+</body>
+</html>
+
+<!-- 
+Destructring (Array And Object)
+Default Params
+Template Literal
+Multiline strings
+Object Literals - If multiline function then explicitly specify retrun otherise will return implicitly
+-->
